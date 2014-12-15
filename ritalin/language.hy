@@ -39,6 +39,6 @@
     (.join "\n" gbuf)))
 
 
-(defmacro graph [name &rest els]
+(defmacro digraph [name &rest els]
   (let [[gbuf (blocks-to-stream "digraph" name els)]]
     (.join "\n" gbuf)))
