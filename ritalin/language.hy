@@ -28,12 +28,17 @@
   (yield-from (map inner-block-to-stream els)))
 
 
-(defn blocks-to-stream [name els]
-  (yield (+ "graph " name " {"))
+(defn blocks-to-stream [flavor name els]
+  (yield (+ flavor " " name " {"))
   (yield-from (inner-blocks-to-stream els))
   (yield "}"))
 
 
 (defmacro graph [name &rest els]
-  (let [[gbuf (blocks-to-stream name els)]]
+  (let [[gbuf (blocks-to-stream "graph" name els)]]
+    (.join "\n" gbuf)))
+
+
+(defmacro graph [name &rest els]
+  (let [[gbuf (blocks-to-stream "digraph" name els)]]
     (.join "\n" gbuf)))

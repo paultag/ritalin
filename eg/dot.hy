@@ -2,5 +2,5 @@
 
 
 (print (graph hello
-  (a -- b -- d)
-  (a -- b -- c [:color red])))
+  (a -> b -> d [:style dotted])
+  (a -> b -> c [:color red])))
